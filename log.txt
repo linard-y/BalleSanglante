@@ -1,0 +1,91 @@
+{
+	"Minute 1" : [
+		{
+			"ball":12, 
+			"events": ["Boron Têtedepioc gagne la balle."]
+		},
+		{
+			"ball":12, 
+			"events": []
+		},
+		{
+			"ball":14, 
+			"events": []
+		},
+		{
+			"ball":14, 
+			"events": ["Boron Têtedepioc est sonné (0 rnd) ","Henk Hachefer récupère la balle","Boron Têtedepioc reprend la partie"]
+		},
+		{
+			"ball":14, 
+			"events": ["Brac est sonné (3 rnd)"]
+		},
+		{
+			"ball":13, 
+			"events": []
+		},
+		{
+			"ball":12, 
+			"events": ["Grabin Têtedepio est blessé par Boruk Hachefer"]
+		},
+		{
+			"ball":10, 
+			"events": ["Brac reprend la partie"]
+		},
+		{
+			"ball":10, 
+			"events": []
+		},
+		{
+			"ball":10, 
+			"events": ["Brac est blessé par Henk Hachefer"]
+		}
+	],
+	"Minute 2" : [
+[8] Thurin Rochepatt (nain, Les Gorilles Blancs) est sonné (4 rnd) 
+Gripsss la purge (gobelin, Amicale des brasseurs bourrus) est expulsé 1 minute 
+[12] Boron Têtedepioc (CAP, nain, Les Gorilles Blancs) gagne la balle.
+[12] Boron Têtedepioc (CAP, nain, Les Gorilles Blancs) est blessé par Trak la masse (demi-orque, Amicale des brasseurs bourrus) 
+Trak la masse (demi-orque, Amicale des brasseurs bourrus) récupère la balle 
+[12] Personne en défense... [9] Personne en défense... Thurin Rochepatt reprend la partie. [6] [6] Touphin LanceBic (nain, Les Gorilles Blancs) récupère la balle 
+[6] [7] [8] Taken l'ours (nain, Amicale des brasseurs bourrus) est sonné (8 rnd) 
+Minute 3 (0 - 0) :
+Gripsss la purge reprend la partie. [11] Personne à l'attaque... Boruk Hachefer (nain, Amicale des brasseurs bourrus) récupère la balle 
+[11] Personne en défense... [8] [8] Thurin Rochepatt (nain, Les Gorilles Blancs) récupère la balle 
+[8] Thoron hachefer (humain, Amicale des brasseurs bourrus) est blessé par Touphin LanceBic (nain, Les Gorilles Blancs) 
+[11] Personne à l'attaque... Boruk Hachefer (nain, Amicale des brasseurs bourrus) récupère la balle 
+[11] Personne en défense... [8] Taken l'ours reprend la partie. [8] Fromir Mandrinde (nain, Les Gorilles Blancs) récupère la balle 
+[8] 
+Minute 4 (0 - 0) :
+[8] [9] Personne à l'attaque... Henk Hachefer (CAP, nain, Amicale des brasseurs bourrus) récupère la balle 
+[9] Personne en défense... [6] [6] [6] [6] [6] [6] [6] 
+Minute 5 (0 - 0) :
+[6] [6] [6] Fromir Mandrinde (nain, Les Gorilles Blancs) récupère la balle 
+[6] [6] Lancer +1 de Fromir Mandrinde (nain, Les Gorilles Blancs)  [7] Karl Osgon (humain, Amicale des brasseurs bourrus) intercepte la balle 
+[7] [7] Fromir Mandrinde (nain, Les Gorilles Blancs) récupère la balle 
+[7] Lancer +1 de Fromir Mandrinde (nain, Les Gorilles Blancs)  [8] Thurin Rochepatt (nain, Les Gorilles Blancs) réceptionne la balle  
+Minute 6 (0 - 0) :
+[8] [10] Personne à l'attaque... Henk Hachefer (CAP, nain, Amicale des brasseurs bourrus) récupère la balle 
+[10] Personne en défense... [7] Fromir Mandrinde (nain, Les Gorilles Blancs) récupère la balle 
+[7] [7] Lancer +2 de Touphin LanceBic (nain, Les Gorilles Blancs)  [9] Boruk Hachefer (nain, Amicale des brasseurs bourrus) intercepte la balle 
+[9] Personne en défense... [6] [6] Karl Osgon (humain, Amicale des brasseurs bourrus) est sonné (7 rnd) 
+Fromir Mandrinde (nain, Les Gorilles Blancs) récupère la balle 
+Minute 7 (0 - 0) :
+[6] Gripsss la purge (gobelin, Amicale des brasseurs bourrus) récupère la balle 
+[6] Gripsss la purge (gobelin, Amicale des brasseurs bourrus) est sonné (6 rnd) 
+Thurin Rochepatt (nain, Les Gorilles Blancs) récupère la balle 
+[6] [7] [7] Fromir Mandrinde (nain, Les Gorilles Blancs) est sonné (5 rnd) 
+Taken l'ours (nain, Amicale des brasseurs bourrus) récupère la balle 
+[8] [8] Karl Osgon reprend la partie. [8] Gripsss la purge reprend la partie. [7] [6] 
+Minute 8 (0 - 0) :
+Fromir Mandrinde reprend la partie. [6] [6] [6] [6] Gripsss la purge (gobelin, Amicale des brasseurs bourrus) est sonné (6 rnd) 
+Fromir Mandrinde (nain, Les Gorilles Blancs) récupère la balle 
+[6] [7] [7] [8] [8] [8] 
+Minute 9 (0 - 0) :
+Gripsss la purge reprend la partie. [10] Personne à l'attaque... Trak la masse (demi-orque, Amicale des brasseurs bourrus) récupère la balle 
+[10] Personne en défense... [7] [7] [7] [7] [7] [7] [7] Karl Osgon (humain, Amicale des brasseurs bourrus) est sonné (4 rnd) 
+Thurin Rochepatt (nain, Les Gorilles Blancs) récupère la balle 
+[7] 
+Minute 10 (0 - 0) :
+[7] [8] [8] Karl Osgon reprend la partie. [11] Personne à l'attaque... Boruk Hachefer (nain, Amicale des brasseurs bourrus) récupère la balle 
+[11] Personne en défense... [8] [8] [8] [8] [8] 

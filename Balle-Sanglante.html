@@ -1,0 +1,525 @@
+﻿<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+    <title>Balle Sanglante </title>
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<style>
+	h1{
+	  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	  font-size: 22px;
+	  font-style: bold; 
+	}
+	h2{
+	  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	  font-size: 18px; 
+	}
+	p{
+	  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	  font-size: 16px;  
+	}
+
+	</style>
+
+</head>
+<body>
+
+<h1> IV Tournoi de Balle Sanglante de Laelith - Terrain du Grand Theâtre </h1>
+<h2> Match de round#3: Les Gorilles Blancs vs L'Amicale des brasseurs bourrus </h2>
+
+<div id=ball_position></div>
+   
+  
+<script type="text/javascript">
+var ball_path = [12,13,13,12,12,10,10,9,9,6,6,7,7,9,9,10,10,7,7,7,7] ;  
+var zones = [0,38,76,114,152,190,228,266,304,342,380,418,456,494,532,570,608,646,684,722,760,798,836,874,912,950];
+var position = [494,297];
+var target = [494,297];
+var rot = 0;
+var last_rot = 0;
+var LesEquipes = [];	
+var LesJoueurs = [];
+
+
+var body = d3.select("body"); // select the 'body' element
+var svg = body.append("svg")  // append an SVG element to the body
+    .attr("width", 1400)      
+    .attr("height", 600);  
+
+// ############# CHRONO ##########################	
+//needle settings
+var needles = {
+	primary: {
+		width: 2,
+		length: 80,
+		wheelRadius: 8,
+		wheelStroke: 2,
+		color: '#607D8B'
+	},
+	secondary: {
+		width: 1,
+		length: 20,
+		wheelRadius: 2.5,
+		wheelStroke: 5,
+		color: '#E91E63'
+	}
+};
+	  
+// linear line function
+var lineFun = d3.line()
+	.x(function(d){return d[0];})
+	.y(function(d){return d[1];});
+	
+var chrono = svg.append('g')
+	.attr('transform', 'translate(1060,100)');
+		
+// Scales
+var scale = d3.scaleLinear().range([0, 360]);
+var roundMarkerScale = scale.copy().domain([0, 10]);
+var minuteMarkerScale = scale.copy().domain([0,10]);
+var TTMarkerScale = scale.copy().domain([0,3]);
+var labelScale = scale.copy().domain([0,10,1]);
+	  
+//group for start/stop buttons
+var g4 = chrono.append('g')
+	.attr('transform', 'translate(80,120)');
+	
+//Secondary clock face for minutes
+var g2 = chrono.append('g')
+    .attr('class', 'secondary')
+    .attr('transform', 'translate(80,32)');
+	
+//Primary clock face for rounds
+var g1 = chrono.append('g')
+    .attr('class', 'primary')
+    .attr('transform', 'translate(80,80)');
+	
+g1.selectAll('.round-marker').data(d3.range.apply(null,roundMarkerScale.domain()))
+    .enter().append('rect')
+		.attr('x', -0.5)
+		.attr('y', -86)
+		.attr('width', 1)
+		.attr('height', 6)
+		.style('fill', 'orange')
+		.attr('transform', function(d){ return 'rotate('+ roundMarkerScale(d) +')';})
+		.attr('class', 'round-marker');
+
+g1.selectAll('.round-label').data(d3.range(1,11,1))
+    .enter()
+		.append('g')
+			.attr('class', 'round-label')
+			.attr('transform', function(d){ return 'rotate('+ labelScale(d) +')';})
+		.append('text')
+			.text(function(d){return d;})
+			.attr("text-anchor", "middle")
+			.attr("font-family", "sans-serif")
+			.attr("font-size", 14)
+			.attr("x", 0)
+			.attr("y", -100)
+			.attr("dy", 5)
+			.style("fill", '#666')
+			.attr("transform", function(d){
+				var deg = -labelScale(d);
+				var x = d3.select(this).attr('x');
+				var y = d3.select(this).attr('y');
+				return 'rotate('+ deg +' ' + x +' '+ y + ')';
+			});
+	  
+
+g2.selectAll('.min-marker').data(d3.range(0,10))
+    .enter().append('rect')
+		.attr('x', -0.5)
+		.attr('y', - 22)
+		.attr('width', 1)
+		.attr('height', 4)
+		.style('fill', 'orange')
+		.attr('transform', function(d){ return 'rotate('+ minuteMarkerScale(d) +')';})
+		.attr('class', 'min-marker');
+
+g2.selectAll('.minute-label').data(d3.range(1,11,1))
+	.enter()
+		.append('g')
+			.attr('class', 'minute-label')
+			.attr('transform', function(d){ return 'rotate('+ labelScale(d) +')';})
+		.append('text')
+			.text(function(d){return d;})
+			.attr("text-anchor", "middle")
+			.attr("font-family", "sans-serif")
+			.attr("font-size", 10)
+			.attr("x", 0)
+			.attr("y", -35)
+			.attr("dy", 4)
+			.style("fill", '#666')
+			.attr("transform", function(d){
+				var deg = -labelScale(d);
+				var x = d3.select(this).attr('x');
+				var y = d3.select(this).attr('y');
+				return 'rotate('+ deg +' ' + x +' '+ y + ')';
+			});
+
+g1.append('circle')
+	.attr("fill", "none")
+    .attr("cx", 0)
+    .attr("cy", 0)
+    .attr("r", 90)
+    .style("stroke", 'orange')
+    .style("stroke-width", 1);
+	
+g2.append('circle')
+	.attr("fill", "none")
+    .attr("cx", 0)
+    .attr("cy", 0)
+    .attr("r", 28)
+    .style("stroke", 'orange')
+    .style("stroke-width", 1);
+	
+	
+// BUTTONS	  
+g4.selectAll('.button')
+	.data([0])
+	.enter().append('path')
+		.attr('class', 'button')
+		.attr('d', d3.symbol().size(256).type(d3.symbolTriangle))
+		.attr('transform', 'rotate(90)')
+		.style("fill","#E91E63")
+		.style('cursor', 'pointer')
+		.on('click', function(){ toggleTimer();});
+  
+// Timer variables
+var timeoutHandle, now, startTime, isStarted = false, elapsedTime = 0;
+  
+// Toggle timer state
+function toggleTimer(){
+    isStarted = !isStarted;
+ 
+    if(isStarted){
+      g4.select('.button')
+		.transition()
+		.ease(d3.easeLinear)
+		.attr('d', d3.symbol().size(256).type(d3.symbolSquare));
+      startTime = Date.now();
+      tick();
+    }
+    else {
+      clearTimeout(timeoutHandle);
+      g4.select('.button')
+		.transition()
+		.ease(d3.easeLinear)
+		.attr('d', d3.symbol().size(256).type(d3.symbolTriangle));
+    }
+  }
+  
+function tick(){
+    now = Date.now();
+    elapsedTime = elapsedTime + now - startTime;
+    startTime = now;
+	
+    var ms = elapsedTime/10;
+    var rounds = ms/100; // à ajuster
+    var minutes = rounds/10;
+	var trueminute = Math.floor(rounds/10);
+	console.log(trueminute);
+	var trueround = Math.floor(rounds-trueminute*10);
+	console.log(trueround);
+	
+    updateNeedle(g1.needle, minuteMarkerScale(rounds));
+    updateNeedle(g2.needle, minuteMarkerScale(minutes));
+	updateBall(trueround);
+    timeoutHandle = setTimeout(tick,0);
+}
+  
+function resetTimer(){
+    clearTimeout(timeoutHandle);
+    isStarted = false;
+	g4.select('.button')
+		.transition()
+		.ease(d3.easeLinear)
+		.attr('d', d3.symbol().size(256).type(d3.symbolTriangle));
+    elapsedTime = now = startTime = 0;
+    updateNeedle(g1.needle, minuteMarkerScale(0), 500);
+    updateNeedle(g2.needle, minuteMarkerScale(0), 500);
+	updateBall(0);
+}
+  
+// Clock Needle/Hand
+//data for needle shape
+function needleData(data){
+    var wa = data.width,  //2
+        wb = data.width*3,  //6
+        lb = data.wheelRadius + 5, //13
+        la = data.length - lb;  //67
+    return [
+          [wb/2, lb], //3, 13
+          [wb/2, -lb],  //3, -13
+          [wa/2,-lb],  //1, -13
+          [wa/2,-la-lb], //1, -80
+          [-wa/2,-la-lb], //-1
+          [-wa/2,-lb],
+          [-wb/2,-lb],
+          [-wb/2,lb]
+        ];
+}
+//draw needle
+function drawNeedle(g, data){
+    g.needle = g.append('g');
+    // Needle Shape
+    g.needle.append('path')
+      .attr('d', lineFun(needleData(data)))
+      .attr('class', 'needle')
+      .style('fill', data.color)
+      .style('stroke-width', 0);
+	  
+    // Needle Wheel
+    g.needle.append('circle')
+      .attr('r', data.wheelRadius)
+      .style('fill', "#fff")
+      .style('stroke', data.color)
+      .style('stroke-width', data.wheelStroke);
+}
+// update needle angle
+function updateNeedle(needle, angle, transition){
+    transition = transition || 0;
+    needle
+      .transition()
+      .duration(transition)
+      .ease(d3.easeQuadOut)
+      .attr('transform', "rotate("+ angle +")")
+	  .on('end',  function() { position = target; last_rot = rot;});
+}
+
+// update ball position
+function updateBall(i){
+	rot = d3.randomUniform(0, 5000)();
+	target = [zones[ball_path[i]]+d3.randomUniform(2, 36)(),d3.randomUniform(52, 542)()];
+	groupball
+		.transition()
+		.duration(0)
+		.ease(d3.easeExp)           // control the speed of the transition
+		.attrTween("transform", rotTween);
+  }
+
+drawNeedle(g1, needles.primary);
+drawNeedle(g2, needles.secondary);
+	
+// ###############################################	
+
+for (var i = 1; i < 26; i++) { 
+	if(i&1)
+		c = "#80B266"
+	else
+		c = "#80B280"
+	svg.append("rect")        // attach a rectangle
+		.attr("x", i*38)         // position the left of the rectangle
+		.attr("y", 50)          // position the top of the rectangle
+		.attr("height", 497)    // set the height
+		.attr("width", 38)    // set the width
+		.style("stroke-width", 4)    // set the stroke width
+		.style("fill", c);    // set the fill colour 
+}
+
+// draw a rectangle - pitch
+svg.append("rect")        // attach a rectangle
+    .attr("x", 0)         // position the left of the rectangle
+    .attr("y", 52)          // position the top of the rectangle
+    .attr("height", 492)    // set the height
+    .attr("width", 988)    // set the width
+    .style("stroke-width", 4)    // set the stroke width
+    .style("stroke", "#001400")    // set the line colour
+    .style("fill", "transparent");    // set the fill colour 
+
+
+// draw a rectangle - halves
+svg.append("rect")        // attach a rectangle
+    .attr("x", 0)         // position the left of the rectangle
+    .attr("y", 52)          // position the top of the rectangle
+    .attr("height", 492)    // set the height
+    .attr("width", 494)    // set the width
+    .style("stroke-width", 4)    // set the stroke width
+    .style("stroke", "#001400")    // set the line colour
+    .style("fill", "transparent");    // set the fill colour 
+	
+svg.append("line")
+	.attr("x1", 342)
+	.attr("y1", 52)
+	.attr("x2", 342)
+	.attr("y2", 542)
+    .style("stroke-dasharray", ("3, 3"))  // <== This line here!!
+    .style("stroke-width", 4)    // set the stroke width
+    .style("stroke", "#001400");    // set the line colour
+	
+svg.append("line")
+	.attr("x1", 646)
+	.attr("y1", 52)
+	.attr("x2", 646)
+	.attr("y2", 542)
+    .style("stroke-dasharray", ("3, 3"))  // <== This line here!!
+    .style("stroke-width", 4)    // set the stroke width
+    .style("stroke", "#001400");    // set the line colour
+	
+// draw a circle - center circle
+svg.append("circle")          // attach a circle
+    .attr("cx", 494)             // position the x-centre
+    .attr("cy", 297)             // position the y-centre
+    .attr("r", 38)               // set the radius
+    .style("stroke-width", 4)    // set the stroke width
+    .style("stroke", "#001400")      // set the line colour
+    .style("fill", "none");      // set the fill colour
+ 
+
+// draw a rectangle - six yard box 1
+svg.append("rect")        // attach a rectangle
+    .attr("x", 2)         // position the left of the rectangle
+    .attr("y", 52)          // position the top of the rectangle
+    .attr("height", 492)    // set the height
+    .attr("width", 36)    // set the width
+    .style("stroke-width", 4)    // set the stroke width
+    .style("stroke", "#001400")    // set the line colour
+    .style("fill", "seagreen");    // set the fill colour 
+
+// draw a rectangle - six yard box 2
+svg.append("rect")        // attach a rectangle
+    .attr("x", 950)         // position the left of the rectangle
+    .attr("y", 52)          // position the top of the rectangle
+    .attr("height", 492)    // set the height
+    .attr("width", 38)    // set the width
+    .style("stroke-width", 4)    // set the stroke width
+    .style("stroke", "#001400")    // set the line colour
+    .style("fill", "seagreen");    // set the fill colour 
+
+// draw a rectangle - zone des remplacants pour equipe 1
+svg.append("rect")        // attach a rectangle
+    .attr("x", 100)         // position the left of the rectangle
+    .attr("y", 2)          // position the top of the rectangle
+    .attr("height", 42)    // set the height
+    .attr("width", 152)    // set the width
+    .style("stroke-width", 4)    // set the stroke width
+    .style("stroke", "#001400")    // set the line colour
+    .style("fill", "seagreen");    // set the fill colour 
+
+// draw a rectangle - zone des remplacants pour equipe 2
+svg.append("rect")        // attach a rectangle
+    .attr("x", 736)         // position the left of the rectangle
+    .attr("y", 552)          // position the top of the rectangle
+    .attr("height", 42)    // set the height
+    .attr("width", 152)    // set the width
+    .style("stroke-width", 4)    // set the stroke width
+    .style("stroke", "#001400")    // set the line colour
+    .style("fill", "seagreen");    // set the fill colour
+	
+// draw a circle - penalty spot 1
+svg.append("circle")        // attach a circle
+    .attr("cx", 19)           // position the x-centre
+    .attr("cy", 297)           // position the y-centre
+    .attr("r", 4)             // set the radius
+    .style("fill", "#001400");     // set the fill colour
+
+// draw a circle - penalty spot 2
+svg.append("circle")        // attach a circle
+    .attr("cx", 969)           // position the x-centre
+    .attr("cy", 297)           // position the y-centre
+    .attr("r", 4)             // set the radius
+    .style("fill", "#001400");     // set the fill colour
+
+// draw a circle - center spot
+svg.append("circle")        // attach a circle
+    .attr("cx", 494)           // position the x-centre
+    .attr("cy", 297)           // position the y-centre
+    .attr("r", 4)             // set the radius
+    .style("fill", "#001400");     // set the fill colour
+
+// draw an ellipse - ball
+var groupball = svg.append("g");
+var ball = groupball.append("ellipse")
+	.attr("cx", 494)           // position the x-centre
+	.attr("cy", 297)           // position the y-centre
+	.attr("rx", 6)             // set the radius
+	.attr("ry", 8)             // set the radius
+	.style("stroke-width", 2)    // set the stroke width
+	.style("stroke", "darkred")    // set the line colour
+	.style("fill", "peru");     // set the fill colour
+
+		
+
+d3.json('FeuilleDeMatch.json', function(data) {
+	LesEquipes = data.teams;
+	LesJoueurs = data.players;
+	LesEquipes.forEach(equipe => {DrawPlayer(equipe);});
+	//animateMulti(ball_path, 0);
+});
+
+
+function DrawPlayer(team) {
+	console.log("equipe#"+team.properties.id);
+	var player_data = LesJoueurs.filter(function(p){ return p.properties.team==team.properties.id;})
+	svg.selectAll(".player").filter(function(p){ return p.properties.team==team.properties.id;})
+		.data(player_data)
+		.enter()
+			.append("circle")
+				.attr("class","player")
+				.attr("cx", function(d) { console.log(d.properties.name); return d.geometry.coordinates[0]; })
+				.attr("cy", function(d) { return d.geometry.coordinates[1]; })
+				.attr("r", 14)
+				.style("fill", team.properties.fillcolor)
+				.style("stroke", team.properties.strokecolor)
+				.call(d3.drag()
+					.on("start", dragstarted)
+					.on("drag", dragged)
+					.on("end", dragended));
+ 
+
+
+};
+
+function dragstarted(d) {
+  d3.select(this).raise();
+}
+
+function dragended(d) {
+  d3.select(this).style("opacity", 1);
+}
+
+
+function dragged(d) {
+  d3.select(this)
+  .attr("cx", d.x = d3.event.x)
+  .attr("cy", d.y = d3.event.y)
+  .style("opacity", .5);
+}
+
+
+function animateMulti(ball_pos, i) {
+	rot = d3.randomUniform(0, 5000)();
+	target = [zones[ball_pos[i]]+d3.randomUniform(2, 36)(),d3.randomUniform(52, 542)()];
+	groupball
+		.transition()
+		.duration(600)
+		.ease(d3.easeExp)           // control the speed of the transition
+		.attrTween("transform", rotTween)
+		.on('end',  function() { 
+			position = target; 
+			last_rot = rot;
+			if (i < (ball_pos.length - 1)) {
+                animateMulti(ball_pos, ++i);
+            }
+		});
+	svg.selectAll(".player").filter(function(p){ return p.properties.team==0;})
+		.transition()
+		.duration(600)
+		.ease(d3.easeExp)           // control the speed of the transition
+		.attr("cx", position[0]);
+}
+
+function rotTween() {
+    var i = d3.interpolate(last_rot, rot);
+    var tx = d3.interpolate(position[0]-494, target[0]-494);
+	var ty = d3.interpolate(position[1]-297, target[1]-297);
+    return function(t) {
+    	return "translate(" + tx(t) + "," + ty(t) +") rotate(" + i(t) + ",494, 297)";
+    };
+
+
+}
+</script>
+
+
+
+</body>

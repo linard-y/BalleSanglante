@@ -1,0 +1,370 @@
+﻿{
+	"teams": [
+		{
+			"type": "Team", 
+			"properties": {
+				"name": "Les Arbitres", 
+				"id": 0,
+				"coach": "Organisateurs", 
+				"fillcolor": "gainsboro",
+				"strokecolor": "darkgrey"
+			}
+		},		{
+			"type": "Team", 
+			"properties": {
+				"name": "Les Gorilles Blancs", 
+				"id": 1,
+				"coach": "ylu", 
+				"fillcolor": "mediumturquoise",
+				"strokecolor": "darkblue"
+			}
+		},
+		{
+			"type": "Team", 
+			"properties": {
+				"name": "L'Amicale des brasseurs bourrus", 
+				"id": 2,
+				"coach": "Zalfrost", 
+				"fillcolor": "moccasin",
+				"strokecolor": "tan"
+			}
+		}
+	],
+	"players": [
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Pyotr Lamainfroide", 
+				"race": "humain",
+				"team": 0
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 494, 34]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Gerald Laloyal", 
+				"race": "humain",
+				"team": 0
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 494, 562]
+			}
+		},		{
+			"type": "Player", 
+			"properties": {
+				"name": "Boron Tetedepioche", 
+				"race": "nain",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 600, 300]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Burlin Dentdemarbre", 
+				"race": "nain",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 400, 300]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Thoron Hachecoeur", 
+				"race": "nain",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 756, 573]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Pralon Tressebarbe", 
+				"race": "nain",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 140, 200]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Morin Fierpierre", 
+				"race": "nain",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 740, 200]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Brouc Cassepipe", 
+				"race": "nain",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 806, 573]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Touphin LanceBiche", 
+				"race": "nain",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 280, 100]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Thurin Rochepatte", 
+				"race": "nain",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 250, 400]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Fromir Mandrindepierre", 
+				"race": "nain",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 120, 300]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Bric", 
+				"race": "demi-orque",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 400, 200]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Brac", 
+				"race": "demi-orque",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 866, 573]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Pti Crapuc", 
+				"race": "demi-orque",
+				"team": 1
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 750, 100]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Trak la masse", 
+				"race": "demi-orque",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 150, 130]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Taken l_ours", 
+				"race": "nain",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 90, 430]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Gripsss la purge", 
+				"race": "gobelin",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 110, 330]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Karl Osgon", 
+				"race": "humain",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 410, 240]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Henk Hachefer", 
+				"race": "nain",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 520, 160]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "Boruk Hachefer", 
+				"race": "nain",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 530, 420]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "defenseur1", 
+				"race": "nain",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 720, 330]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "defenser2", 
+				"race": "nain",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 710, 240]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "defenseur3", 
+				"race": "nain",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 720, 160]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "defenseur4", 
+				"race": "nain",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 730, 420]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "remplacant1", 
+				"race": "hafelin",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 122, 24]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "remplacant2", 
+				"race": "hafelin",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 157, 24]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "remplacant3", 
+				"race": "elfe",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 192, 24]
+			}
+		},
+		{
+			"type": "Player", 
+			"properties": {
+				"name": "remplacant4", 
+				"race": "elfe",
+				"team": 2
+			},
+			"geometry": {
+				"type": "Point", 
+				"coordinates": [ 227, 24]
+			}
+		}		
+	]
+}
